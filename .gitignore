@@ -1,0 +1,6 @@
+
+/.vs/
+/out/
+extern/glm/
+extern/imgui/
+/CMakeSettings.json

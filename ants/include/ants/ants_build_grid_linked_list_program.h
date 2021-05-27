@@ -1,0 +1,55 @@
+#pragma once
+
+#include <string>
+
+#include "gl_classes/program.h"
+#include "gl_classes/program_uniform.h"
+#include "gl_classes/compute_program.h"
+#include "gl_classes/shader.h"
+
+#include "im_param/im_param.h"
+#include "im_param/gl_classes/program_uniform_specializations.h"
+
+namespace ants {
+
+    class AntsBuildGridLinkedListProgram : public gl_classes::ComputeProgram
+    {
+    public:
+        using Program = gl_classes::Program;
+        using ComputeProgram = gl_classes::ComputeProgram;
+        using Shader = gl_classes::Shader;
+        template<class T> using ProgramUniform = gl_classes::ProgramUniform<T>;
+
+        using Program = gl_classes::Program;
+        using ComputeProgram = gl_classes::ComputeProgram;
+        using Shader = gl_classes::Shader;
+        template<class T> using ProgramUniform = gl_classes::ProgramUniform<T>;
+
+            AntsBuildGridLinkedListProgram(){}
+            ~AntsBuildGridLinkedListProgram(){}
+            void setup();
+            void dispatch(int num_items);
+            std::string code() const;
+            ProgramUniform<uint32_t> num_items;
+            ProgramUniform<uint32_t> width;
+            ProgramUniform<uint32_t> height;
+    };
+}  // namespace ants
+
+
+namespace im_param {
+
+    template <class backend_type>
+    backend_type& parameter(
+        backend_type& backend,
+        ::ants::AntsBuildGridLinkedListProgram& program, 
+        const TypeHolder<::ants::AntsBuildGridLinkedListProgram>&)
+    {
+        program.use();
+        parameter(backend, "num_items" , program.num_items , 0, 10000);
+        parameter(backend, "width"     , program.width     , 0, 2048);
+        parameter(backend, "height"    , program.height    , 0, 2048);
+        return backend;
+    }
+    
+} // namespace im_param

@@ -1,0 +1,6 @@
+if (TARGET Catch2::Catch2)
+    return()
+else()
+    add_subdirectory(${CMAKE_SOURCE_DIR}/extern/Catch2 ${CMAKE_BINARY_DIR}/extern/Catch2)
+    list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/extern/Catch2/contrib)
+endif()

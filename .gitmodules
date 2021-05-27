@@ -1,0 +1,9 @@
+[submodule "extern/Catch2"]
+	path = extern/Catch2
+	url = https://github.com/catchorg/Catch2.git
+[submodule "im_param"]
+	path = im_param
+	url = https://github.com/xaedes/im_param.git
+[submodule "gl_classes"]
+	path = gl_classes
+	url = https://github.com/xaedes/gl_classes.git
